@@ -6,7 +6,7 @@ canvas.height = 400;
 
 function drawBoard() {
     // Задній фон
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = 'yellow';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Малювання трикутників
