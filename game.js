@@ -4,23 +4,35 @@ const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 400;
 
-// Here you can add code to draw the board and pieces
 function drawBoard() {
-    // Example: draw background
+    // Задній фон
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Example: draw grid lines (you can customize these)
-    ctx.strokeStyle = 'black';
-    for (let x = 0; x < canvas.width; x += 50) {
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-    }
-    for (let y = 0; y < canvas.height; y += 50) {
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-    }
-    ctx.stroke();
+    // Малювання трикутників
+    const triangles = [
+        {x: 50, y: 0, height: 200, color: 'black'},
+        {x: 100, y: 0, height: 200, color: 'beige'},
+        // Додати інші трикутники...
+    ];
+
+    triangles.forEach(triangle => {
+        ctx.fillStyle = triangle.color;
+        ctx.beginPath();
+        ctx.moveTo(triangle.x, triangle.y);
+        ctx.lineTo(triangle.x + 50, triangle.y);
+        ctx.lineTo(triangle.x + 25, triangle.y + triangle.height);
+        ctx.closePath();
+        ctx.fill();
+    });
+
+    // Малювання драконів (або інших декоративних елементів)
+    // Наприклад, ви можете використати зображення:
+    const dragonImg = new Image();
+    dragonImg.src = 'path_to_dragon_image.png';
+    dragonImg.onload = () => {
+        ctx.drawImage(dragonImg, canvas.width / 2 - 50, canvas.height / 2 - 50, 100, 100);
+    };
 }
 
 drawBoard();
